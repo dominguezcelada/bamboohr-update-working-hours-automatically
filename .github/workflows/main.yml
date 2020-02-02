@@ -1,0 +1,13 @@
+name: cURL BambooHR API
+on:
+  push:
+  schedule:
+    - cron: '0 9 * * * '
+jobs:
+  curl:
+    runs-on: ubuntu-latest
+    steps:
+    - name: curl
+      uses: enflo/curl-action@master
+      with:
+        curl: https://${{secrets.BAMBOOHR_API_KEY}}:x@api.bamboohr.com/api/gateway.php/marfeel/v1/timetracking/record/123456
