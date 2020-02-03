@@ -1,0 +1,26 @@
+{
+  "name": "bamboohr-update-working-time-job-settings",
+  "version": "1.0.0",
+  "description": "Github Action to interact with BambooHR API to add/modify Working hours of an employee automatically: - on [push] - from Monday to Friday at 9am",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dominguezcelada/bamboohr-update-working-time-job-settings.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dominguezcelada/bamboohr-update-working-time-job-settings/issues"
+  },
+  "homepage": "https://github.com/dominguezcelada/bamboohr-update-working-time-job-settings#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.2",
+    "@actions/github": "^2.1.0",
+    "puppeteer": "^2.1.0"
+  }
+}

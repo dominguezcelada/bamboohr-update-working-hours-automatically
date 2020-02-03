@@ -1,0 +1,23 @@
+name: BambooHR with Puppeteer
+on:
+  push:
+  schedule:
+    - cron: '0 9 * * * '
+jobs:
+  puppeteer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Install
+        uses: ianwalter/puppeteer@v2.0.0
+        with:
+          args: yarn
+      - name: Run Puppeteer
+        uses: ianwalter/puppeteer@v2.0.0
+        env:
+            COMPANY: ${{ secrets.COMPANY_BAMBOOHR }}
+            USER: ${{ secrets.USER_BAMBOOHR }}
+            PASSWORD: ${{ secrets.PASSWORD_BAMBOOHR }}
+        with:
+          args: yarn run start
