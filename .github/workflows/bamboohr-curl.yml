@@ -10,4 +10,4 @@ jobs:
     - name: curl
       uses: enflo/curl-action@master
       with:
-        curl: https://${{secrets.BAMBOOHR_API_KEY}}:x@api.bamboohr.com/api/gateway.php/marfeel/v1/timetracking/record/123456
+        curl: https://${{secrets.BAMBOOHR_API_KEY}}:x@api.bamboohr.com/api/gateway.php/${{secrets.COMPANY_BAMBOOHR}}/v1/timetracking/record/123456
