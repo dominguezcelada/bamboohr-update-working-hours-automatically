@@ -24,3 +24,4 @@ const puppeteer = require('puppeteer');
     console.error(error)
   }
 })()
+
