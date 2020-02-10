@@ -2,7 +2,7 @@ name: BambooHR with Puppeteer
 on:
   push:
   schedule:
-    - cron: '0 9 * * * '
+    - cron: '0 8 * * 1-5'
 jobs:
   puppeteer:
     runs-on: ubuntu-latest
