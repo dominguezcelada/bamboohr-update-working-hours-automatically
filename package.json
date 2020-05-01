@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/dominguezcelada/bamboohr-update-working-time-job-settings#readme",
   "dependencies": {
-    "@actions/core": "^1.2.3",
+    "@actions/core": "^1.2.4",
     "@actions/github": "^2.1.1",
     "puppeteer": "^3.0.2"
   }
