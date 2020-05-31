@@ -17,3 +17,4 @@ Add the following KEY-VALUES as [secrets](https://help.github.com/en/actions/aut
 * `COMPANY_BAMBOOHR`: Company subdomain to access your company's BambooHR site: https://<COMPANY_BAMHOOHR>.bamboohr.com
 * `USER_BAMBOOHR`: Username to log in into your BambooHR account
 * `PASSWORD_BAMBOOHR`:	Password to log in into your BambooHR account
+
