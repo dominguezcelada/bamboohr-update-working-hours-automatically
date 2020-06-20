@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer')
 
-(async () => {
+async function main () {
   const browser = await puppeteer.launch({
     headless: true,
     executablePath: 'google-chrome-unstable',
@@ -23,4 +23,6 @@ const puppeteer = require('puppeteer')
   } catch (error) {
     console.error(error)
   }
-})()
+}
+
+main()
