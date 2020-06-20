@@ -15,13 +15,12 @@ const puppeteer = require('puppeteer')
     const [response] = await Promise.all([
       page.waitForNavigation(),
       page.click('[type="submit"]')
-    ]);
+    ])
     console.log(response)
     await page.type('.TimeTrackingWidget__form input', '8')
     await page.click('.js-save-timesheet-button-wrap button')
     browser.close()
-  } catch(error) {
+  } catch (error) {
     console.error(error)
   }
 })()
-
