@@ -21,6 +21,6 @@
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@actions/github": "^3.0.0",
-    "puppeteer": "^4.0.0"
+    "puppeteer": "^4.0.1"
   }
 }
