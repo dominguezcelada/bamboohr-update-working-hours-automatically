@@ -1,9 +1,11 @@
 name: BambooHR with Puppeteer
 on:
   push:
-    - branch: "test-branch"
+    branches:
+      - test-branch
   schedule:
     - cron: "0 8 * * 1-5"
+
 jobs:
   puppeteer:
     runs-on: ubuntu-latest
