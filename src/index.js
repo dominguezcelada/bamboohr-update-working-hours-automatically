@@ -13,7 +13,7 @@ const bambooLogin = async (page) => {
   return response
 }
 
-const addWorkingHoursToDay = (page) => {
+const addWorkingHoursToDay = async (page) => {
   await page.type('.TimeTrackingWidget__form input', '8')
   await page.click('.js-save-timesheet-button-wrap button')
 } 
