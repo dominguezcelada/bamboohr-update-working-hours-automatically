@@ -19,9 +19,10 @@ async function main () {
     console.log(response)
     await page.type('.TimeTrackingWidget__form input', '8')
     await page.click('.js-save-timesheet-button-wrap button')
-    browser.close()
   } catch (error) {
     console.error(error)
+  } finally {
+    browser.close()
   }
 }
 
