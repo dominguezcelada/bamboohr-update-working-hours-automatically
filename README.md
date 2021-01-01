@@ -2,7 +2,7 @@
 
 Automatically add working hours of an employee in [BambooHR](https://www.bamboohr.com/)
 
-## Context
+## Context test
 
 The [company](https://www.marfeel.com) I'm currently working for requires to fulfill a form every day of the month with the amount of hours worked in BambooHR platform. This is due the [new law](https://www.boe.es/diario_boe/txt.php?id=BOE-A-2019-3481) the Spanish government created a few months ago.
 Apparently BambooHR plugin to add Working Hours does not offer settings to automate or add by default values to this form.
