@@ -9,7 +9,6 @@ on:
     - cron: '0 8 * * 1-5'
 jobs:
   puppeteer:
-    if: contains(github.event.pull_request.labels.*.name, 'test-puppeteer')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
