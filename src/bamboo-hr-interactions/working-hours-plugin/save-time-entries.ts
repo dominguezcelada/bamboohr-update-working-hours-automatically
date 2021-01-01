@@ -1,5 +1,5 @@
-import { Page } from 'puppeteer';
+import { Page } from "puppeteer";
 
 export const saveChanges = async (page: Page) => {
-    await page.click('div[role=contentinfo] button:nth-of-type(1)');
+  await page.click("div[role=contentinfo] button:nth-of-type(1)");
 };
