@@ -1,5 +1,7 @@
 name: BambooHR with Puppeteer
 on:
+  pull_request:
+    types: ['labeled']
   push:
     branches:
       - "test-*"
