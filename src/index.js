@@ -107,7 +107,7 @@ async function main() {
 
     await saveChanges(page);
 
-    console.log('Time entry/s saved Successfully')
+    console.log("Time entry/s saved Successfully");
 
     browser.close();
   } catch (error) {
