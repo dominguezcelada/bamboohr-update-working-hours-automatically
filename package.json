@@ -4,9 +4,11 @@
   "description": "Github Action to interact with BambooHR API to add/modify Working hours of an employee automatically: - on [push] - from Monday to Friday at 9am",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "npm run build; node --unhandled-rejections=strict ./dist/index.js"
+    "lint": "prettier --check .",
+    "lint:fix": "prettier --write .",
+    "start": "npm run build; node --unhandled-rejections=strict ./dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@types/puppeteer": "^5.4.2",
+    "prettier": "^2.2.1",
     "typescript": "^4.1.3"
   }
 }
