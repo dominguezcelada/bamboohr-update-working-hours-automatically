@@ -89,25 +89,25 @@ async function main() {
 
     console.log("Added Working Hours (morning) Successfuly");
 
-    // await addNewTimeEntry(page);
+    await addNewTimeEntry(page);
 
-    // await addWorkingHoursToDay(
-    //   page,
-    //   {
-    //     time: "3",
-    //     isPostMeridium: true,
-    //     menuId: "8",
-    //   },
-    //   {
-    //     time: "6",
-    //     isPostMeridium: true,
-    //     menuId: "10",
-    //   }
-    // );
+    await addWorkingHoursToDay(
+      page,
+      {
+        time: "3",
+        isPostMeridium: true,
+        menuId: "8",
+      },
+      {
+        time: "6",
+        isPostMeridium: true,
+        menuId: "10",
+      }
+    );
 
     await saveChanges(page);
 
-    console.log("Added Working Hours (morning) Successfuly");
+    console.log('Time entry/s saved Successfully')
 
     browser.close();
   } catch (error) {
