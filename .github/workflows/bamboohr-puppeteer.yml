@@ -15,13 +15,13 @@ jobs:
         uses: ianwalter/puppeteer@v2.0.0
         with:
           args: yarn
-      - name: Lint Action
+      - name: Lint
         uses: wearerequired/lint-action@v1.7.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           eslint: true
           prettier: true
-      - name: Run Puppeteer
+      - name: Puppeteer
         uses: ianwalter/puppeteer@v2.0.0
         env:
             COMPANY: ${{ secrets.COMPANY_BAMBOOHR }}
