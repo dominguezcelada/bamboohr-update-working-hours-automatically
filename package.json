@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "lint": "prettier --check .",
-    "lint:fix": "prettier --write .",
+    "lint": "eslint '*/**/*.{js,ts}' --quiet",
+    "lint:fix": "eslint '*/**/*.{js,ts}' --quiet --fix",
     "start": "npm run build; node --unhandled-rejections=strict ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -31,6 +31,8 @@
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
     "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
     "prettier": "^2.2.1",
     "typescript": "^4.1.3"
   }
