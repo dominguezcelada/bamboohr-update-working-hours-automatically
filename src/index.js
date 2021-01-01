@@ -46,6 +46,10 @@ const addNewTimeEntry = async (page) => {
   await page.click(".AddEditEntry__addEntryLink");
 };
 
+const saveChanges = async (page) => {
+  await page.click('div[role=contentinfo] button:nth-of-type(1)')
+} 
+
 async function main() {
   const browser = await puppeteer.launch({
     headless: true,
@@ -87,6 +91,8 @@ async function main() {
         menuId: "10",
       }
     );
+
+    await saveChanges(page)
 
     browser.close();
   } catch (error) {
