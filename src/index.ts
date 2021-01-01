@@ -4,7 +4,7 @@ import {
   openWorkingHoursForm,
   addWorkingHoursToday,
   saveChanges,
-  addWorkingHoursEntry
+  addWorkingHoursEntry,
 } from "./bamboo-hr-interactions";
 
 async function main() {
@@ -29,7 +29,11 @@ async function main() {
     await addWorkingHoursEntry(page);
     console.log("✅ Added input for Working Hours (afternoon)");
     //PostMeridium is not necessary for endTime 6PM here
-    await addWorkingHoursToday(page, { time: "3", isPostMeridium: true }, { time: "6" });
+    await addWorkingHoursToday(
+      page,
+      { time: "3", isPostMeridium: true },
+      { time: "6" }
+    );
     console.log("✅ Added Working Hours (afternoon)");
 
     await saveChanges(page);

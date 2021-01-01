@@ -2,13 +2,10 @@ import { Page } from "puppeteer";
 
 interface TimeInfo {
   time: string;
-  isPostMeridium?: boolean
+  isPostMeridium?: boolean;
 }
 
-const applyPostMeridiumInField = async (
-  page: Page,
-  childNumber: number
-) => {
+const applyPostMeridiumInField = async (page: Page, childNumber: number) => {
   await page.click(
     `.AddEditEntry__clocks:last-child .ClockField:nth-of-type(${childNumber}) [role]`
   );
