@@ -23,11 +23,16 @@ jobs:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   eslint: true
                   prettier: true
+            - name: Build
+              uses: ianwalter/puppeteer@v2.0.0
+              with:
+                  args: yarn build
             - name: Puppeteer
+              if: ${{ github.event_name != 'push' }}
               uses: ianwalter/puppeteer@v2.0.0
               env:
                   COMPANY: ${{ secrets.COMPANY_BAMBOOHR }}
                   USER: ${{ secrets.USER_BAMBOOHR }}
                   PASSWORD: ${{ secrets.PASSWORD_BAMBOOHR }}
               with:
-                  args: yarn run start
+                  args: yarn start
