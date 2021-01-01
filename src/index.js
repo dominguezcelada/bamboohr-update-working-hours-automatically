@@ -47,8 +47,8 @@ const addNewTimeEntry = async (page) => {
 };
 
 const saveChanges = async (page) => {
-  await page.click('div[role=contentinfo] button:nth-of-type(1)')
-} 
+  await page.click("div[role=contentinfo] button:nth-of-type(1)");
+};
 
 async function main() {
   const browser = await puppeteer.launch({
@@ -92,7 +92,7 @@ async function main() {
       }
     );
 
-    await saveChanges(page)
+    await saveChanges(page);
 
     browser.close();
   } catch (error) {
