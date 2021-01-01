@@ -1,4 +1,4 @@
-# BambooHR Working Hours automation
+# BambooHR Working Hours automation 
 
 Automatically add working hours of an employee in [BambooHR](https://www.bamboohr.com/)
 
