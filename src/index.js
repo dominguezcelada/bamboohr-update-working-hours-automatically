@@ -21,9 +21,7 @@ const applyPostMeridiumInField = async (page, selector, menuId) => {
   await page.click(
     `.AddEditEntry__clocks:last-child .ClockField:nth-of-type(${selector}) [role]`
   );
-  await page.click(
-    `[data-menu-id="fab-menu${menuId}"].fab-MenuVessel .fab-MenuOption:nth-child(2)`
-  );
+  await page.click('.fab-MenuOption:nth-of-type(2)');
 };
 
 const addWorkingHoursToDay = async (page, startTime, endTime) => {
@@ -83,7 +81,7 @@ async function main() {
       {
         time: "2",
         menuId: "4",
-        isPostMeridium: true,
+        // isPostMeridium: true, NOT NECESSARY
       }
     );
 
@@ -102,7 +100,7 @@ async function main() {
       },
       {
         time: "6",
-        isPostMeridium: true,
+        // isPostMeridium: true, NOT NECESSARY
         menuId: "10",
       }
     );
