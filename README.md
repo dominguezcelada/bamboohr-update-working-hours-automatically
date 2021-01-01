@@ -3,8 +3,7 @@ Github Action to interact with BambooHR API to add/modify Working hours of an em
 - on [push]
 - from Monday to Friday at 9am
 
-### Actions:
-* `bamboohr-curl.yml`: Call to BambooHR API to update working hours :warning: NOT WORKING
+### GitHub Action:
 * `bamboohr-puppeteer.yml`: Manual interaction with the site to add today's hours manually (with Puppeteer)
 
 # Setup
