@@ -35,9 +35,11 @@ const addWorkingHoursToDay = async (page, startTime, endTime) => {
       `.AddEditEntry__clocks:last-child .ClockField:nth-of-type(${childSelector}) input`,
       time
     );
-
+    console.log(`Added Working Hour: ${time} Successfuly`)
+    
     if (isPostMeridium) {
       await applyPostMeridiumInField(page, childSelector, menuId);
+      console.log(`Applied PM to ${time} Successfuly`)
     }
   });
 };
@@ -58,10 +60,13 @@ async function main() {
   });
   const page = await browser.newPage();
   try {
-    const response = await bambooLogin(page);
-    console.log(response);
+    await bambooLogin(page);
 
+    console.log('Logged In Successfuly')
+    
     await openWorkingHoursForm(page);
+    
+    console.log('Opened Working Hours Modal Successfuly')
 
     await addWorkingHoursToDay(
       page,
@@ -75,6 +80,8 @@ async function main() {
         isPostMeridium: true,
       }
     );
+
+    console.log('Added Working Hours (morning) Successfuly')
 
     // await addNewTimeEntry(page);
 
@@ -93,6 +100,8 @@ async function main() {
     // );
 
     await saveChanges(page);
+
+    console.log('Added Working Hours (morning) Successfuly')
 
     browser.close();
   } catch (error) {
