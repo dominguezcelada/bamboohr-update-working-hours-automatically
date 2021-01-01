@@ -28,25 +28,25 @@ const applyPostMeridiumInField = async (page, selector, menuId) => {
 
 const addWorkingHoursToDay = async (page, startTime, endTime) => {
   await page.type(
-    '.AddEditEntry__clocks:last-child .ClockField:nth-of-type(1) input',
+    ".AddEditEntry__clocks:last-child .ClockField:nth-of-type(1) input",
     startTime.time
   );
-  console.log(`Added Working Hour: ${startTime.time} Successfuly`)
-  
+  console.log(`Added Working Hour: ${startTime.time} Successfuly`);
+
   if (startTime.isPostMeridium) {
     await applyPostMeridiumInField(page, 1, startTime.menuId);
-    console.log(`Applied PM to ${time} Successfuly`)
+    console.log(`Applied PM to ${time} Successfuly`);
   }
 
   await page.type(
-    '.AddEditEntry__clocks:last-child .ClockField:nth-of-type(2) input',
+    ".AddEditEntry__clocks:last-child .ClockField:nth-of-type(2) input",
     endTime.time
   );
-  console.log(`Added Working Hour: ${endTime.time} Successfuly`)
-  
+  console.log(`Added Working Hour: ${endTime.time} Successfuly`);
+
   if (endTime.isPostMeridium) {
     await applyPostMeridiumInField(page, 2, endTime.menuId);
-    console.log(`Applied PM to ${endTime.time} Successfuly`)
+    console.log(`Applied PM to ${endTime.time} Successfuly`);
   }
 };
 
@@ -68,11 +68,11 @@ async function main() {
   try {
     await bambooLogin(page);
 
-    console.log('Logged In Successfuly')
-    
+    console.log("Logged In Successfuly");
+
     await openWorkingHoursForm(page);
-    
-    console.log('Opened Working Hours Modal Successfuly')
+
+    console.log("Opened Working Hours Modal Successfuly");
 
     await addWorkingHoursToDay(
       page,
@@ -87,7 +87,7 @@ async function main() {
       }
     );
 
-    console.log('Added Working Hours (morning) Successfuly')
+    console.log("Added Working Hours (morning) Successfuly");
 
     // await addNewTimeEntry(page);
 
@@ -107,7 +107,7 @@ async function main() {
 
     await saveChanges(page);
 
-    console.log('Added Working Hours (morning) Successfuly')
+    console.log("Added Working Hours (morning) Successfuly");
 
     browser.close();
   } catch (error) {
