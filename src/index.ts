@@ -1,26 +1,22 @@
 import puppeteer, { Page } from "puppeteer";
 
 interface TimeInfo {
-  time: string,
-  isPostMeridium?: boolean,
-  menuId: string
+  time: string;
+  isPostMeridium?: boolean;
+  menuId: string;
 }
 
 const checkEnvironmentVariables = () => {
-  [
-    'COMPANY',
-    'USER',
-    'PASSWORD'
-  ].forEach(envVariable => {
+  ["COMPANY", "USER", "PASSWORD"].forEach((envVariable) => {
     if (!process.env[envVariable]) {
-      throw new Error(`Environment variable ${envVariable} not defined`)
+      throw new Error(`Environment variable ${envVariable} not defined`);
     }
-  })
-}
+  });
+};
 
 const bambooLogin = async (page: Page) => {
-  checkEnvironmentVariables()
-  
+  checkEnvironmentVariables();
+
   await page.goto(`https://${process.env.COMPANY}.bamboohr.com/login.php`);
   await page.click(".normal-login-link-container");
   await page.type("#lemail", process.env.USER as string);
@@ -37,14 +33,22 @@ const openWorkingHoursForm = async (page: Page) => {
   await page.click(".TimeTrackingWidget button");
 };
 
-const applyPostMeridiumInField = async (page: Page, childNumber: number, menuId: string) => {
+const applyPostMeridiumInField = async (
+  page: Page,
+  childNumber: number,
+  menuId: string
+) => {
   await page.click(
     `.AddEditEntry__clocks:last-child .ClockField:nth-of-type(${childNumber}) [role]`
   );
   await page.click(".fab-MenuOption:nth-of-type(2)");
 };
 
-const addWorkingHoursToDay = async (page: Page, startTime: TimeInfo, endTime: TimeInfo) => {
+const addWorkingHoursToDay = async (
+  page: Page,
+  startTime: TimeInfo,
+  endTime: TimeInfo
+) => {
   await page.type(
     ".AddEditEntry__clocks:last-child .ClockField:nth-of-type(1) input",
     startTime.time
