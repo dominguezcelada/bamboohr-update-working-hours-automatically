@@ -62,12 +62,12 @@ async function main() {
     await addWorkingHoursToDay(
       page,
       {
-        time: 9,
-        menuId: 2,
+        time: '9',
+        menuId: '2',
       },
       {
-        time: 2,
-        menuId: 4,
+        time: '2',
+        menuId: '4',
         isPostMeridium: true,
       }
     );
@@ -77,14 +77,14 @@ async function main() {
     await addWorkingHoursToDay(
       page,
       {
-        time: 3,
+        time: '3',
         isPostMeridium: true,
-        menuId: 8,
+        menuId: '8',
       },
       {
-        time: 6,
+        time: '6',
         isPostMeridium: true,
-        menuId: 10,
+        menuId: '10',
       }
     );
 
