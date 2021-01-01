@@ -11,8 +11,9 @@ I first tried to interact with [BambooHR API](https://documentation.bamboohr.com
 
 That's why I opt for a headless solution to add the manual interaction a user would do so it can be automated.
 
-## Tools/Technologies
+## Tools/Language/Technologies
 
+- [TypeScript](https://www.typescriptlang.org/)
 - [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions)
   - from Monday to Friday at 8am (GMT)
 - [Puppeteer](https://pptr.dev/)
