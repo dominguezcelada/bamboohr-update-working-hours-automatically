@@ -76,21 +76,21 @@ async function main() {
       }
     );
 
-    await addNewTimeEntry(page);
+    // await addNewTimeEntry(page);
 
-    await addWorkingHoursToDay(
-      page,
-      {
-        time: "3",
-        isPostMeridium: true,
-        menuId: "8",
-      },
-      {
-        time: "6",
-        isPostMeridium: true,
-        menuId: "10",
-      }
-    );
+    // await addWorkingHoursToDay(
+    //   page,
+    //   {
+    //     time: "3",
+    //     isPostMeridium: true,
+    //     menuId: "8",
+    //   },
+    //   {
+    //     time: "6",
+    //     isPostMeridium: true,
+    //     menuId: "10",
+    //   }
+    // );
 
     await saveChanges(page);
 
