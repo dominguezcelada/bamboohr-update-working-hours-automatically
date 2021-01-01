@@ -27,21 +27,27 @@ const applyPostMeridiumInField = async (page, selector, menuId) => {
 };
 
 const addWorkingHoursToDay = async (page, startTime, endTime) => {
-  [
-    { ...startTime, childSelector: 1 },
-    { ...endTime, childSelector: 2 },
-  ].forEach(async ({ time, childSelector, isPostMeridium, menuId }) => {
-    await page.type(
-      `.AddEditEntry__clocks:last-child .ClockField:nth-of-type(${childSelector}) input`,
-      time
-    );
-    console.log(`Added Working Hour: ${time} Successfuly`)
-    
-    if (isPostMeridium) {
-      await applyPostMeridiumInField(page, childSelector, menuId);
-      console.log(`Applied PM to ${time} Successfuly`)
-    }
-  });
+  await page.type(
+    '.AddEditEntry__clocks:last-child .ClockField:nth-of-type(1) input',
+    startTime.time
+  );
+  console.log(`Added Working Hour: ${startTime.time} Successfuly`)
+  
+  if (startTime.isPostMeridium) {
+    await applyPostMeridiumInField(page, 1, startTime.menuId);
+    console.log(`Applied PM to ${time} Successfuly`)
+  }
+
+  await page.type(
+    '.AddEditEntry__clocks:last-child .ClockField:nth-of-type(2) input',
+    endTime.time
+  );
+  console.log(`Added Working Hour: ${endTime.time} Successfuly`)
+  
+  if (endTime.isPostMeridium) {
+    await applyPostMeridiumInField(page, 2, endTime.menuId);
+    console.log(`Applied PM to ${endTime.time} Successfuly`)
+  }
 };
 
 const addNewTimeEntry = async (page) => {
