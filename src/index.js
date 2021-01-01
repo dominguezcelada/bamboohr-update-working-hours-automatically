@@ -33,7 +33,7 @@ const addWorkingHoursToDay = async (page, startTime, endTime) => {
 
   if (startTime.isPostMeridium) {
     await applyPostMeridiumInField(page, 1, startTime.menuId);
-    console.log(`Applied PM to ${time} Successfuly`);
+    console.log(`Applied PM to ${startTime.time} Successfuly`);
   }
 
   await page.type(
