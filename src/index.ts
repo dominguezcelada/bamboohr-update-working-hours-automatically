@@ -1,10 +1,30 @@
-const puppeteer = require("puppeteer");
+import puppeteer, { Page } from "puppeteer";
 
-const bambooLogin = async (page) => {
+interface TimeInfo {
+  time: string,
+  isPostMeridium?: boolean,
+  menuId: string
+}
+
+const checkEnvironmentVariables = () => {
+  [
+    'COMPANY',
+    'USER',
+    'PASSWORD'
+  ].forEach(envVariable => {
+    if (!process.env[envVariable]) {
+      throw new Error(`Environment variable ${envVariable} not defined`)
+    }
+  })
+}
+
+const bambooLogin = async (page: Page) => {
+  checkEnvironmentVariables()
+  
   await page.goto(`https://${process.env.COMPANY}.bamboohr.com/login.php`);
   await page.click(".normal-login-link-container");
-  await page.type("#lemail", process.env.USER);
-  await page.type('input[type="password"]', process.env.PASSWORD);
+  await page.type("#lemail", process.env.USER as string);
+  await page.type('input[type="password"]', process.env.PASSWORD as string);
   const [response] = await Promise.all([
     page.waitForNavigation(),
     page.click('[type="submit"]'),
@@ -13,18 +33,18 @@ const bambooLogin = async (page) => {
   return response;
 };
 
-const openWorkingHoursForm = async (page) => {
+const openWorkingHoursForm = async (page: Page) => {
   await page.click(".TimeTrackingWidget button");
 };
 
-const applyPostMeridiumInField = async (page, selector, menuId) => {
+const applyPostMeridiumInField = async (page: Page, childNumber: number, menuId: string) => {
   await page.click(
-    `.AddEditEntry__clocks:last-child .ClockField:nth-of-type(${selector}) [role]`
+    `.AddEditEntry__clocks:last-child .ClockField:nth-of-type(${childNumber}) [role]`
   );
   await page.click(".fab-MenuOption:nth-of-type(2)");
 };
 
-const addWorkingHoursToDay = async (page, startTime, endTime) => {
+const addWorkingHoursToDay = async (page: Page, startTime: TimeInfo, endTime: TimeInfo) => {
   await page.type(
     ".AddEditEntry__clocks:last-child .ClockField:nth-of-type(1) input",
     startTime.time
@@ -48,11 +68,11 @@ const addWorkingHoursToDay = async (page, startTime, endTime) => {
   }
 };
 
-const addNewTimeEntry = async (page) => {
+const addNewTimeEntry = async (page: Page) => {
   await page.click(".AddEditEntry__addEntryLink");
 };
 
-const saveChanges = async (page) => {
+const saveChanges = async (page: Page) => {
   await page.click("div[role=contentinfo] button:nth-of-type(1)");
 };
 
