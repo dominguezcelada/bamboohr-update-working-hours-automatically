@@ -18,7 +18,7 @@ That's why I opt for a headless solution to add the manual interaction a user wo
   - from Monday to Friday at 8am (GMT)
 - [Puppeteer](https://pptr.dev/)
 
-## Project Structure:
+## Project Structure: t
 
 - `.github/workflows/bamboohr-puppeteer.yml`: Simulate UI interactions with BambooHR UI through headless browser solution (Puppeteer)
 - `src/index.ts`: File run by Puppeteer to interact with BambooHR UI site to finally register Working Hours on _BambooHR's Working Hours Plugin_
