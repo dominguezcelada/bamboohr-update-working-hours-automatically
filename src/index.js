@@ -13,10 +13,36 @@ const bambooLogin = async (page) => {
   return response
 }
 
-const addWorkingHoursToDay = async (page) => {
-  await page.type('.TimeTrackingWidget__form input', '8')
-  await page.click('.js-save-timesheet-button-wrap button')
-} 
+const openWorkingHoursForm = async (page) => {
+  await page.click('.TimeTrackingWidget button')
+}
+
+const applyPostMeridiumInField = async (page, selector, menuId) => {
+  await page.click(`.AddEditEntry__clocks:last-child .ClockField${selector} [role]`)
+  await page.click(`[data-menu-id="fab-menu${menuId}"].fab-MenuVessel .fab-MenuOption:nth-child(2)`)
+}
+
+const addWorkingHoursToDay = async (page, startTime, endTime) => {
+  [
+    {...startTime, childSelector: ':first-child' },
+    {...endTime, childSelector: ':last-child' },
+  ].forEach(async ({
+    time,
+    childSelector,
+    isPostMeridium,
+    menuId
+  }) => {
+    await page.type(`.AddEditEntry__clocks:last-child .ClockField${childSelector} input`, time)
+
+    if (isPostMeridium) {
+      await applyPostMeridiumInField(page, childSelector, menuId)
+    }
+  })
+}
+
+const addNewTimeEntry = async (page) => {
+  await page.click('.AddEditEntry__addEntryLink')
+}
 
 async function main () {
   const browser = await puppeteer.launch({
@@ -29,7 +55,34 @@ async function main () {
     const response = await bambooLogin(page)
     console.log(response)
 
-    await addWorkingHoursToDay(page)
+    await openWorkingHoursForm(page)
+    
+    await addWorkingHoursToDay(page,
+      {
+        time: 9,
+        menuId: 2
+      },
+      {
+        time: 2,
+        menuId: 4,
+        isPostMeridium: true
+      }
+    )
+
+    await addNewTimeEntry(page)
+    
+    await addWorkingHoursToDay(page,
+      {
+        time: 3,
+        isPostMeridium: true,
+        menuId: 8
+      },
+      {
+        time: 6,
+        isPostMeridium: true,
+        menuId: 10
+      }
+    )
     
     browser.close()
   } catch (error) {
