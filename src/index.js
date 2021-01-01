@@ -19,7 +19,7 @@ const openWorkingHoursForm = async (page) => {
 
 const applyPostMeridiumInField = async (page, selector, menuId) => {
   await page.click(
-    `.AddEditEntry__clocks:last-child .ClockField${selector} [role]`
+    `.AddEditEntry__clocks:last-child .ClockField:nth-of-type(${selector}) [role]`
   );
   await page.click(
     `[data-menu-id="fab-menu${menuId}"].fab-MenuVessel .fab-MenuOption:nth-child(2)`
