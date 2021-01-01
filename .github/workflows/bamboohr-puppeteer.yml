@@ -1,33 +1,33 @@
 name: BambooHR with Puppeteer
 on:
-  push:
-    branches-ignore: 
-    - main
-  pull_request:
-    types: ['labeled']
-  schedule:
-    - cron: '0 8 * * 1-5'
+    push:
+        branches-ignore:
+            - main
+    pull_request:
+        types: ['labeled']
+    schedule:
+        - cron: '0 8 * * 1-5'
 jobs:
-  puppeteer:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Install
-        uses: ianwalter/puppeteer@v2.0.0
-        with:
-          args: yarn
-      - name: Lint
-        uses: wearerequired/lint-action@v1.7.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          eslint: true
-          prettier: true
-      - name: Puppeteer
-        uses: ianwalter/puppeteer@v2.0.0
-        env:
-            COMPANY: ${{ secrets.COMPANY_BAMBOOHR }}
-            USER: ${{ secrets.USER_BAMBOOHR }}
-            PASSWORD: ${{ secrets.PASSWORD_BAMBOOHR }}
-        with:
-          args: yarn run start
+    puppeteer:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@master
+            - name: Install
+              uses: ianwalter/puppeteer@v2.0.0
+              with:
+                  args: yarn
+            - name: Lint
+              uses: wearerequired/lint-action@v1.7.0
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  eslint: true
+                  prettier: true
+            - name: Puppeteer
+              uses: ianwalter/puppeteer@v2.0.0
+              env:
+                  COMPANY: ${{ secrets.COMPANY_BAMBOOHR }}
+                  USER: ${{ secrets.USER_BAMBOOHR }}
+                  PASSWORD: ${{ secrets.PASSWORD_BAMBOOHR }}
+              with:
+                  args: yarn run start

@@ -13,16 +13,16 @@ That's why I opt for a headless solution to add the manual interaction a user wo
 
 ## Tools/Language/Technologies
 
-- [TypeScript](https://www.typescriptlang.org/)
-- [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions)
-  - from Monday to Friday at 8am (GMT)
-- [Puppeteer](https://pptr.dev/)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions)
+    -   from Monday to Friday at 8am (GMT)
+-   [Puppeteer](https://pptr.dev/)
 
 ## Project Structure: t
 
-- `.github/workflows/bamboohr-puppeteer.yml`: Simulate UI interactions with BambooHR UI through headless browser solution (Puppeteer)
-- `src/index.ts`: File run by Puppeteer to interact with BambooHR UI site to finally register Working Hours on _BambooHR's Working Hours Plugin_
-- `src/bamboo-hr-interactions/*`: Different interactions taken over BambooHR UI Components with Puppeteer (click, type...)
+-   `.github/workflows/bamboohr-puppeteer.yml`: Simulate UI interactions with BambooHR UI through headless browser solution (Puppeteer)
+-   `src/index.ts`: File run by Puppeteer to interact with BambooHR UI site to finally register Working Hours on _BambooHR's Working Hours Plugin_
+-   `src/bamboo-hr-interactions/*`: Different interactions taken over BambooHR UI Components with Puppeteer (click, type...)
 
 # Setup
 
@@ -30,9 +30,9 @@ That's why I opt for a headless solution to add the manual interaction a user wo
 
 2. Add the following KEY-VALUES as [secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets) on the repository you plan to run this Github Action:
 
-   - `COMPANY_BAMBOOHR`: **Company's subdomain** under BambooHR to access your company's BambooHR site: **https://`<COMPANY_BAMHOOHR>`.bamboohr.com**
-   - `USER_BAMBOOHR`: BambooHR's **Username** of the employee you want to automate his/her working hours
-   - `PASSWORD_BAMBOOHR`: **Password** associated to previous username
+    - `COMPANY_BAMBOOHR`: **Company's subdomain** under BambooHR to access your company's BambooHR site: **https://`<COMPANY_BAMHOOHR>`.bamboohr.com**
+    - `USER_BAMBOOHR`: BambooHR's **Username** of the employee you want to automate his/her working hours
+    - `PASSWORD_BAMBOOHR`: **Password** associated to previous username
 
 3. Wait until next working day (Monday-Friday) at 8AM GTM<sup>\*\*</sup> to get GitHub Action automatically triggered
 
