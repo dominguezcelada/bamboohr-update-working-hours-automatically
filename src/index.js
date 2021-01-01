@@ -88,11 +88,11 @@ async function main() {
     );
 
     console.log("Added Working Hours (morning) Successfuly");
-    
+
     await addNewTimeEntry(page);
-    
+
     console.log("Added input for Working Hours (afternoon) Successfuly");
-    
+
     await addWorkingHoursToDay(
       page,
       {
