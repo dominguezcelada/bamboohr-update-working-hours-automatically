@@ -1,84 +1,11 @@
-import puppeteer, { Page } from "puppeteer";
-
-interface TimeInfo {
-  time: string;
-  isPostMeridium?: boolean;
-  menuId: string;
-}
-
-const checkEnvironmentVariables = () => {
-  ["COMPANY", "USER", "PASSWORD"].forEach((envVariable) => {
-    if (!process.env[envVariable]) {
-      throw new Error(`Environment variable ${envVariable} not defined`);
-    }
-  });
-};
-
-const bambooLogin = async (page: Page) => {
-  checkEnvironmentVariables();
-
-  await page.goto(`https://${process.env.COMPANY}.bamboohr.com/login.php`);
-  await page.click(".normal-login-link-container");
-  await page.type("#lemail", process.env.USER as string);
-  await page.type('input[type="password"]', process.env.PASSWORD as string);
-  const [response] = await Promise.all([
-    page.waitForNavigation(),
-    page.click('[type="submit"]'),
-  ]);
-
-  return response;
-};
-
-const openWorkingHoursForm = async (page: Page) => {
-  await page.click(".TimeTrackingWidget button");
-};
-
-const applyPostMeridiumInField = async (
-  page: Page,
-  childNumber: number,
-  menuId: string
-) => {
-  await page.click(
-    `.AddEditEntry__clocks:last-child .ClockField:nth-of-type(${childNumber}) [role]`
-  );
-  await page.click(".fab-MenuOption:nth-of-type(2)");
-};
-
-const addWorkingHoursToDay = async (
-  page: Page,
-  startTime: TimeInfo,
-  endTime: TimeInfo
-) => {
-  await page.type(
-    ".AddEditEntry__clocks:last-child .ClockField:nth-of-type(1) input",
-    startTime.time
-  );
-  console.log(`Added Working Hour: ${startTime.time} Successfuly`);
-
-  if (startTime.isPostMeridium) {
-    await applyPostMeridiumInField(page, 1, startTime.menuId);
-    console.log(`Applied PM to ${startTime.time} Successfuly`);
-  }
-
-  await page.type(
-    ".AddEditEntry__clocks:last-child .ClockField:nth-of-type(2) input",
-    endTime.time
-  );
-  console.log(`Added Working Hour: ${endTime.time} Successfuly`);
-
-  if (endTime.isPostMeridium) {
-    await applyPostMeridiumInField(page, 2, endTime.menuId);
-    console.log(`Applied PM to ${endTime.time} Successfuly`);
-  }
-};
-
-const addNewTimeEntry = async (page: Page) => {
-  await page.click(".AddEditEntry__addEntryLink");
-};
-
-const saveChanges = async (page: Page) => {
-  await page.click("div[role=contentinfo] button:nth-of-type(1)");
-};
+import puppeteer from "puppeteer";
+import {
+  login,
+  openWorkingHoursForm,
+  addWorkingHoursToday,
+  saveChanges,
+  addWorkingHoursEntry
+} from "./bamboo-hr-interactions";
 
 async function main() {
   const browser = await puppeteer.launch({
@@ -86,58 +13,31 @@ async function main() {
     executablePath: "google-chrome-unstable",
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
-  const page = await browser.newPage();
-  try {
-    await bambooLogin(page);
 
-    console.log("Logged In Successfuly");
+  const page = await browser.newPage();
+
+  try {
+    await login(page);
+    console.log("✅ Logged In");
 
     await openWorkingHoursForm(page);
+    console.log("✅ Opened Working Hours Modal");
 
-    console.log("Opened Working Hours Modal Successfuly");
-
-    await addWorkingHoursToDay(
-      page,
-      {
-        time: "9",
-        menuId: "2",
-      },
-      {
-        time: "2",
-        menuId: "4",
-        // isPostMeridium: true, NOT NECESSARY
-      }
-    );
-
-    console.log("Added Working Hours (morning) Successfuly");
-
-    await addNewTimeEntry(page);
-
-    console.log("Added input for Working Hours (afternoon) Successfuly");
-
-    await addWorkingHoursToDay(
-      page,
-      {
-        time: "3",
-        isPostMeridium: true,
-        menuId: "8",
-      },
-      {
-        time: "6",
-        // isPostMeridium: true, NOT NECESSARY
-        menuId: "10",
-      }
-    );
-
-    console.log("Added Working Hours (afternoon) Successfuly");
+    //PostMeridium is not necessary for endTime 2PM here
+    await addWorkingHoursToday(page, { time: "9" }, { time: "2" });
+    console.log("✅ Added Working Hours (morning)");
+    await addWorkingHoursEntry(page);
+    console.log("✅ Added input for Working Hours (afternoon)");
+    //PostMeridium is not necessary for endTime 6PM here
+    await addWorkingHoursToday(page, { time: "3", isPostMeridium: true }, { time: "6" });
+    console.log("✅ Added Working Hours (afternoon)");
 
     await saveChanges(page);
-
-    console.log("Time entry/s saved Successfully");
+    console.log("🎉 Working Hours saved 🎉");
 
     browser.close();
   } catch (error) {
-    console.error(error);
+    console.error(`🔴 ${error}`);
     process.exit(1);
   }
 }
