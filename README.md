@@ -2,6 +2,12 @@
 
 Automatically add working hours of an employee in [BambooHR](https://www.bamboohr.com/)
 
+# ⚠️ Unmaintained ⚠️
+
+My company stopped using BambooHR so this project is not maintained anymore
+
+---
+
 ## Context
 
 The [company](https://www.marfeel.com) I'm currently working for requires to fulfill a form every day of the month with the amount of hours worked in BambooHR platform. This is due the [new law](https://www.boe.es/diario_boe/txt.php?id=BOE-A-2019-3481) the Spanish government created a few months ago.
